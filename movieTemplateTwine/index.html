@@ -92,23 +92,50 @@ box-shadow: 0px 0px 120px 15px rgba(255,255,255,0.48);
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="So.. you&#39;re in charge of the zoo&#39;s mammal division?" tags="" position="275,600" size="100,100">&lt;div id=&quot;video&quot;&gt;&lt;video  autoplay&gt;
   &lt;source src=&quot;mammal_division.mp4&quot; type=&quot;video/mp4&quot;&gt;
 Your browser does not support the video tag.
-&lt;/video&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="I see you&#39;re particularly interested in wolves." tags="" position="1025,750" size="100,100">&lt;div id=&quot;video&quot;&gt;&lt;video autoplay&gt;
+&lt;/video&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="I see you&#39;re particularly interested in wolves." tags="" position="1025,750" size="100,100">&lt;div id=&quot;video&quot;&gt;&lt;video autoplay id=&quot;scene&quot;&gt;
   &lt;source src=&quot;interested_in_wolves.mp4&quot; type=&quot;video/mp4&quot;&gt;
   Your browser does not support the video tag.
 &lt;/video&gt;&lt;/div&gt;
 
-  &lt;div id=&quot;questions_bg&quot;&gt;
-&lt;div id=&quot;questions&quot;&gt;
-
-[[What kind of wolf research do you do, Herr Doctor?]]
-
-[[Do you mind if talk briefly about the missing wolves?]] 
-
-[[What do you think of this pawprint impression?]] 
+&lt;div id=&quot;questions_bg&quot; style=&quot;opacity: 0; visibility: hidden;&quot;&gt;
+  &lt;div id=&quot;questions&quot; style=&quot;opacity: 0; visibility: hidden;&quot;&gt;
+    [[What kind of wolf research do you do, Herr Doctor?]] 
+    [[Do you mind if talk briefly about the missing wolves?]] 
+    [[What do you think of this pawprint impression?]] 
+  &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="What kind of wolf research do you do, Herr Doctor?" tags="" position="575,625" size="100,100">&lt;div id=&quot;video&quot;&gt;
-  &lt;video id=&quot;scene&quot; autoplay&gt;
-    &lt;source src=&quot;what_kind_of_wolf_research.mp4&quot; type=&quot;video/mp4&quot;&gt;
+
+&lt;script&gt;
+// Run this code after the passage is displayed in Twine
+
+  // Get the video and question elements
+  videoElement = document.getElementById(&quot;scene&quot;);
+  questionsElement = document.getElementById(&quot;questions&quot;);
+  questionsBgElement = document.getElementById(&quot;questions_bg&quot;);
+
+  // Set the fade-in transition initially to ensure it applies when opacity changes
+  questionsElement.style.transition = &quot;opacity 1.5s ease-in-out&quot;;
+  questionsBgElement.style.transition = &quot;opacity 1.5s ease-in-out&quot;;
+
+  // Ensure video metadata is loaded before accessing duration
+  videoElement.addEventListener(&quot;loadedmetadata&quot;, () =&gt; {
+    const sceneTime = videoElement.duration * 1000; // Duration in milliseconds
+
+    // Check if duration is valid (fallback if needed)
+    const timeoutDuration = isNaN(sceneTime) || sceneTime === 0 ? 3000 : sceneTime;
+
+    // Set a timeout based on video duration to trigger fade-in
+    setTimeout(() =&gt; {
+      // Apply visibility and fade-in effect
+      questionsElement.style.visibility = &quot;visible&quot;;
+      questionsBgElement.style.visibility = &quot;visible&quot;;
+      questionsElement.style.opacity = &quot;1&quot;;
+      questionsBgElement.style.opacity = &quot;1&quot;;
+    }, timeoutDuration);
+});
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="3" name="What kind of wolf research do you do, Herr Doctor?" tags="" position="575,625" size="100,100">&lt;div id=&quot;video&quot;&gt;
+  &lt;video id=&quot;scene&quot; autoplay id=&quot;scene&quot;&gt;
+    &lt;source src=&quot;what_kind_of_wolf_research.mp4&quot; type=&quot;video/mp4&quot; &gt;
     Your browser does not support the video tag.
   &lt;/video&gt;
 &lt;/div&gt;
@@ -126,14 +153,14 @@ Your browser does not support the video tag.
 // Run this code after the passage is displayed in Twine
 
   // Get the video and question elements
-  const videoElement = document.getElementById(&quot;scene&quot;);
-  const questionsElement = document.getElementById(&quot;questions&quot;);
-  const questionsBgElement = document.getElementById(&quot;questions_bg&quot;);
-
+  videoElement = document.getElementById(&quot;scene&quot;);
+  questionsElement = document.getElementById(&quot;questions&quot;);
+  questionsBgElement = document.getElementById(&quot;questions_bg&quot;);
   // Ensure video metadata is loaded before accessing duration
   videoElement.addEventListener(&quot;loadedmetadata&quot;, () =&gt; {
     const sceneTime = videoElement.duration * 1000; // Duration in milliseconds
-
+// Ensure video metadata is loaded before accessing duration
+  videoElement.addEventListener(&quot;loadedmetadata&quot;, () =&gt; {
     // Set a timeout based on video duration to trigger fade-in
     setTimeout(() =&gt; {
      questionsElement.style.visibility = &quot;visible&quot;;
@@ -146,30 +173,99 @@ Your browser does not support the video tag.
  
     }, sceneTime);
   });
-
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="4" name="Do you mind if talk briefly about the missing wolves?" tags="" position="850,375" size="100,100">&lt;div id=&quot;video&quot;&gt;&lt;video  autoplay&gt;
+  });
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="4" name="Do you mind if talk briefly about the missing wolves?" tags="" position="800,350" size="100,100">&lt;div id=&quot;video&quot;&gt;&lt;video  autoplay id=&quot;scene&quot;&gt;
   &lt;source src=&quot;missing_wolves.mp4&quot; type=&quot;video/mp4&quot;&gt;
 Your browser does not support the video tag.
 &lt;/video&gt;&lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="5" name="What do you think of this pawprint impression?" tags="" position="1075,425" size="100,100">What do you think of this pawprint impression?</tw-passagedata><tw-passagedata pid="6" name="startup" tags="startup" position="199,198" size="100,100">{
+
+&lt;div id=&quot;questions_bg&quot; style=&quot;opacity: 0; visibility: hidden;&quot;&gt;
+  &lt;div id=&quot;questions&quot; style=&quot;opacity: 0; visibility: hidden;&quot;&gt;
+    [[What kind of wolf research do you do, Herr Doctor?]] 
+    [[What do you think of this pawprint impression?]] 
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+// Run this code after the passage is displayed in Twine
+
+  // Get the video and question elements
+  videoElement = document.getElementById(&quot;scene&quot;);
+  questionsElement = document.getElementById(&quot;questions&quot;);
+  questionsBgElement = document.getElementById(&quot;questions_bg&quot;);
+  // Ensure video metadata is loaded before accessing duration
+  videoElement.addEventListener(&quot;loadedmetadata&quot;, () =&gt; {
+    const sceneTime = videoElement.duration * 1000; // Duration in milliseconds
+// Ensure video metadata is loaded before accessing duration
+  videoElement.addEventListener(&quot;loadedmetadata&quot;, () =&gt; {
+    // Set a timeout based on video duration to trigger fade-in
+    setTimeout(() =&gt; {
+     questionsElement.style.visibility = &quot;visible&quot;;
+      questionsBgElement.style.visibility = &quot;visible&quot;;
+      // Apply fade-in effect by setting opacity and transition directly
+      questionsElement.style.transition = &quot;opacity 1.5s ease-in-out&quot;;
+      questionsBgElement.style.transition = &quot;opacity 1.5s ease-in-out&quot;;
+      questionsElement.style.opacity = &quot;1&quot;;
+      questionsBgElement.style.opacity = &quot;1&quot;;
+ 
+    }, sceneTime);
+  });
+  });
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="5" name="What do you think of this pawprint impression?" tags="" position="975,550" size="100,100">What do you think of this pawprint impression?</tw-passagedata><tw-passagedata pid="6" name="startup" tags="startup" position="199,198" size="100,100">{
 (set: $now_playing to &quot;nothing&quot;)
 
 &lt;!-- inventory --&gt;
 (set: $wolfprint to &quot;false&quot;)
 }
-</tw-passagedata><tw-passagedata pid="7" name="Klingmann" tags="" position="1275,600" size="100,100">&lt;div id=&quot;video&quot;&gt;&lt;video  autoplay&gt;
-  &lt;source src=&quot;Klingmann.mp4&quot; type=&quot;video/mp4&quot;&gt;
-Your browser does not support the video tag.
-&lt;/video&gt;&lt;/div&gt;
+</tw-passagedata><tw-passagedata pid="7" name="Klingmann" tags="" position="1325,450" size="100,100">&lt;div id=&quot;video&quot;&gt;
+  &lt;video id=&quot;scene&quot; autoplay id=&quot;scene&quot;&gt;
+    &lt;source src=&quot;Klingmann.mp4&quot; type=&quot;video/mp4&quot;&gt;
+    Your browser does not support the video tag.
+  &lt;/video&gt;
+&lt;/div&gt;
 
-</tw-passagedata><tw-passagedata pid="8" name="footer" tags="" position="200,399" size="100,100">Wolf Investigation</tw-passagedata><tw-passagedata pid="9" name="Start" tags="" position="525,250" size="100,100">&lt;h1&gt;Herr Doktor Klingmann&lt;/h1&gt;
+&lt;div id=&quot;questions_bg&quot; style=&quot;opacity: 0; visibility: hidden;&quot;&gt;
+  &lt;div id=&quot;questions&quot; style=&quot;opacity: 0; visibility: hidden;&quot;&gt;
+    [[I see you&#39;re particularly interested in wolves.]] 
+    [[What kind of wolf research do you do, Herr Doctor?]] 
+    [[Do you mind if talk briefly about the missing wolves?]] 
+    [[What do you think of this pawprint impression?]] 
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+// Run this code after the passage is displayed in Twine
+
+  // Get the video and question elements
+  let videoElement = document.getElementById(&quot;scene&quot;);
+  let questionsElement = document.getElementById(&quot;questions&quot;);
+  let  questionsBgElement = document.getElementById(&quot;questions_bg&quot;);
+
+  // Set the fade-in transition initially to ensure it applies when opacity changes
+  questionsElement.style.transition = &quot;opacity 1.5s ease-in-out&quot;;
+  questionsBgElement.style.transition = &quot;opacity 1.5s ease-in-out&quot;;
+
+  // Ensure video metadata is loaded before accessing duration
+  videoElement.addEventListener(&quot;loadedmetadata&quot;, () =&gt; {
+    const sceneTime = videoElement.duration * 1000; // Duration in milliseconds
+
+    // Check if duration is valid (fallback if needed)
+    const timeoutDuration = isNaN(sceneTime) || sceneTime === 0 ? 3000 : sceneTime;
+
+    // Set a timeout based on video duration to trigger fade-in
+    setTimeout(() =&gt; {
+      // Apply visibility and fade-in effect
+      questionsElement.style.visibility = &quot;visible&quot;;
+      questionsBgElement.style.visibility = &quot;visible&quot;;
+      questionsElement.style.opacity = &quot;1&quot;;
+      questionsBgElement.style.opacity = &quot;1&quot;;
+    }, timeoutDuration);
+});
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="8" name="footer" tags="" position="200,399" size="100,100">Wolf Investigation</tw-passagedata><tw-passagedata pid="9" name="Start" tags="" position="1400,175" size="100,100">&lt;h1&gt;Herr Doktor Klingmann&lt;/h1&gt;
 &lt;p&gt;You have been invited to interview the infamous Herr Klingmann about his research on wolves.&lt;/p&gt;
 
-&lt;div id=&quot;questions_bg&quot;&gt;
-&lt;div id=&quot;questions&quot;&gt;
-[[What kind of wolf research do you do, Herr Doctor?]] 
-&lt;/div&gt;
-&lt;/div&gt;
+&lt;h2&gt; [[Klingmann]]  &lt;/h2&gt;
+
 </tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
